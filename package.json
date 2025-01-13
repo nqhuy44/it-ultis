@@ -1,10 +1,10 @@
 {
-  "name": "my-website",
+  "name": "it-utils",
   "version": "1.0.0",
   "description": "A simple website project",
-  "main": "src/scripts/app.js",
+  "main": "scripts/app.js",
   "scripts": {
-    "start": "live-server src",
+    "start": "live-server",
     "build": "echo 'Build step not defined'"
   },
   "keywords": [],
