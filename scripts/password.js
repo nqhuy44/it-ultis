@@ -1,25 +1,28 @@
-console.log('Password script loaded');
-
 const passwd = {
     setLength: function(length) {
         document.getElementById('length').value = length;
     },
     generate: function() {
-        console.log('Generate function called');
         const length = parseInt(document.getElementById('length').value);
-        if (isNaN(length) || length <= 0 || length > 128) {
+        const includeSpecial = document.getElementById('include-special').checked;
+
+        if (isNaN(length) || length < 1 || length > 128) {
             this.showErrorNotification();
             return;
         }
 
-        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
-        let generatedPassword = "";
-        for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * charset.length);
-            generatedPassword += charset[randomIndex];
+        let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        if (includeSpecial) {
+            charset += '!@#$%^&*()_+~`|}{[]:;?><,./-=';
         }
 
-        document.getElementById('password').value = generatedPassword;
+        let password = '';
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * charset.length);
+            password += charset[randomIndex];
+        }
+
+        document.getElementById('password').value = password;
     },
     copy: function() {
         const passwordField = document.getElementById('password');
@@ -28,12 +31,12 @@ const passwd = {
 
         try {
             document.execCommand('copy');
-            this.showNotification();
+            this.showCopyNotification();
         } catch (err) {
             console.error('Failed to copy password');
         }
     },
-    showNotification: function() {
+    showCopyNotification: function() {
         const notification = document.getElementById('copy-notification');
         notification.classList.remove('hidden', 'opacity-0');
         notification.classList.add('opacity-100');
@@ -59,7 +62,7 @@ const passwd = {
     }
 };
 
-// Set default length on page load
+// Initialize the form
 document.addEventListener('DOMContentLoaded', () => {
-    passwd.setLength(12);
+    document.getElementById('length').value = 32;
 });

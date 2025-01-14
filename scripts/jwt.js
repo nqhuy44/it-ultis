@@ -1,11 +1,9 @@
 const jwt = {
     generateToken: function() {
+        const header = document.getElementById('header').value;
         const payload = document.getElementById('payload').value;
         const secret = document.getElementById('secret').value;
-
-        // Generate JWT token (this is a placeholder, replace with actual JWT generation logic)
-        const token = btoa(JSON.stringify({ payload, secret }));
-
+        const token = btoa(JSON.stringify(header)) + '.' + btoa(JSON.stringify(payload)) + '.' + btoa(secret); // Simplified token generation
         document.getElementById('token').value = token;
     },
     copyToken: function() {
@@ -20,6 +18,25 @@ const jwt = {
             console.error('Failed to copy token');
         }
     },
+    toggleGenerateButton: function() {
+        const header = document.getElementById('header').value;
+        const payload = document.getElementById('payload').value;
+        const secret = document.getElementById('secret').value;
+        const generateButton = document.getElementById('generate-button');
+
+        if (header && payload && secret) {
+            generateButton.removeAttribute('disabled');
+            generateButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+            generateButton.setAttribute('disabled', 'true');
+            generateButton.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+    },
+    generateSecret: function() {
+        const secret = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        document.getElementById('secret').value = secret;
+        this.toggleGenerateButton();
+    },
     showNotification: function() {
         const notification = document.getElementById('copy-notification');
         notification.classList.remove('hidden', 'opacity-0');
@@ -33,3 +50,8 @@ const jwt = {
         }, 2000);
     }
 };
+
+// Initialize the form
+document.addEventListener('DOMContentLoaded', () => {
+    jwt.toggleGenerateButton();
+});
