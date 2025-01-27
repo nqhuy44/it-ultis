@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.js"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl">
+        <h1 class="text-2xl font-bold mb-6 text-center">Hash Generator</h1>
+        <form id="hash-form">
+            <div class="mb-4">
+                <label for="input-string" class="block text-gray-700 font-bold mb-2">Input String:</label>
+                <textarea id="input-string" name="input-string" rows="3" class="w-full p-2 border border-gray-300 rounded mt-1" placeholder="Enter string to hash" required oninput="toggleButtons()"></textarea>
+            </div>
+            <div class="mb-4 flex space-x-4">
+                <button type="button" id="md5-button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600" onclick="generateHash('MD5')" disabled>MD5</button>
+                <button type="button" id="sha1-button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600" onclick="generateHash('SHA1')" disabled>SHA-1</button>
+                <button type="button" id="sha256-button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600" onclick="generateHash('SHA256')" disabled>SHA-256</button>
+            </div>
+            <div class="mt-8">
+                <label for="output-hash" class="block text-gray-700 font-bold mb-2">Hashed String:</label>
+                <div class="flex">
+                    <textarea id="output-hash" name="output-hash" rows="1" class="w-full p-2 border border-gray-300 rounded mt-1" readonly></textarea>
+                    <button type="button" class="w-1/5 ml-2 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 mt-1" onclick="copyHash()">Copy</button>
+                </div>
+            </div>
+        </form>
+        <div id="copy-notification" class="hidden fixed bottom-4 right-4 bg-gray-800 text-white py-2 px-4 rounded shadow-lg transition-opacity duration-300 opacity-0">
+            Hash copied to clipboard
+        </div>
+    </div>
+    <script src="../scripts/hash.js"></script>
+</body>
+</html>
