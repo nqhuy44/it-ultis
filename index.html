@@ -1,51 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Utils</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>EssPouch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
-        <h1 class="text-3xl font-bold mb-8 text-center">IT Utils</h1>
-        <div class="grid grid-cols-2 gap-8">
-            <div>
-                <h2 class="text-xl font-bold mb-4 text-center">Generators</h2>
-                <ul class="space-y-4">
-                    <li>
-                        <a href="pages/jwt.html" class="block w-3/4 mx-auto p-4 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 text-center transition duration-300">
-                            JWT
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/password.html" class="block w-3/4 mx-auto p-4 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 text-center transition duration-300">
-                            Password
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/ssh.html" class="block w-3/4 mx-auto p-4 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 text-center transition duration-300">
-                            SSH Key
-                        </a>
-                    </li>
-                </ul>
+<body>
+    <div class="category-layout">
+        <div class="explore-row">
+            <div class="explore-head">
+                <h1 class="category-title">EssPouch<br><span class="category-title-main">Tinker's pouch for developers</span></h1>
+                <p class="explore-sub">The gadgets of a wayfinder</p>
             </div>
-            <div>
-                <h2 class="text-xl font-bold mb-4 text-center">Encoders/Decoders</h2>
-                <ul class="space-y-4">
-                    <li>
-                        <a href="pages/base64.html" class="block w-3/4 mx-auto p-4 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 text-center transition duration-300">
-                            Base64
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/hash.html" class="block w-3/4 mx-auto p-4 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 text-center transition duration-300">
-                            Hash
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <div class="decor-blob" aria-hidden="true"></div>
+        </div>  
+
+        <div class="category-grid">
+            <a href="pages/password.html" class="category-card accent-blue">
+                <div class="category-icon"><i class="fa-solid fa-lock"></i></div>
+                <div class="category-body">
+                    <div class="category-card-title">Password Generator</div>
+                    <div class="category-card-desc">Generate strong, secure passwords.</div>
+                </div>
+                <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="pages/pin.html" class="category-card accent-purple">
+                <div class="category-icon"><i class="fa-solid fa-keypad"></i></div>
+                <div class="category-body">
+                    <div class="category-card-title">PIN Generator</div>
+                    <div class="category-card-desc">Create numeric PINs (4–16 digits).</div>
+                </div>
+                <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="pages/base64.html" class="category-card accent-cyan">
+                <div class="category-icon"><i class="fa-solid fa-file-code"></i></div>
+                <div class="category-body">
+                    <div class="category-card-title">Base64</div>
+                    <div class="category-card-desc">Encode / decode Base64 strings.</div>
+                </div>
+                <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="pages/hash.html" class="category-card accent-pink">
+                <div class="category-icon"><i class="fa-solid fa-hashtag"></i></div>
+                <div class="category-body">
+                    <div class="category-card-title">Hash</div>
+                    <div class="category-card-desc">Calculate hashes</div>
+                </div>
+                <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="pages/ssh.html" class="category-card accent-green">
+                <div class="category-icon"><i class="fa-solid fa-terminal"></i></div>
+                <div class="category-body">
+                    <div class="category-card-title">SSH Key</div>
+                    <div class="category-card-desc">Generate and format SSH keys.</div>
+                </div>
+                <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
         </div>
     </div>
+
+    <footer class="category-footer">
+        &copy; 2025 EssPouch. From Huy Nguyen.
+    </footer>
 </body>
 </html>

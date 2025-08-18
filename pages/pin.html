@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PIN Generator — EssPouch</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/custom.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <div class="category-layout">
+    <div class="explore-row">
+      <div class="explore-head">
+        <h1 class="category-title">
+          PIN Generator
+          <br><span class="category-title-main">Create random PINs</span>
+        </h1>
+        <!-- subpages keep only title -->
+      </div>
+      <div class="decor-blob" aria-hidden="true"></div>
+    </div>
+
+    <div class="card pw-flex-card">
+      <div class="pw-left">
+        <div class="card-title"><i class="fa-solid fa-key"></i> PIN options</div>
+
+        <div class="option-group" style="align-items:center;">
+          <label for="pin-length" class="option-label">Digits:</label>
+          <input type="number" id="pin-length" min="4" max="16" value="6" class="option-input" />
+        </div>
+
+        <div class="option-group" aria-label="preset lengths">
+          <button type="button" class="option-btn" data-length="4">4</button>
+          <button type="button" class="option-btn" data-length="6">6</button>
+          <button type="button" class="option-btn" data-length="8">8</button>
+          <button type="button" class="option-btn" data-length="12">12</button>
+          <button type="button" class="option-btn" data-length="16">16</button>
+        </div>
+
+        <div class="note">Note: PIN length between 4 and 16 digits.</div>
+      </div>
+
+      <div class="pw-right">
+        <input type="hidden" id="pin-value" />
+
+        <div class="chat-area" id="chat-area" aria-live="polite" aria-atomic="true">
+          <!-- bubbles inserted by scripts -->
+        </div>
+
+        <div class="action-row" style="margin-top:1rem;">
+          <button class="option-btn main" id="generate-pin">
+            <i class="fa-solid fa-key-skeleton"></i> Generate PIN
+          </button>
+          <button class="copy-btn" id="copy-pin">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="category-footer">
+    &copy; 2025 EssPouch. Made by Huy Nguyen.
+  </footer>
+
+  <script src="../scripts/pin.js"></script>
+</body>
+</html>
