@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="../styles/custom.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+
 <body>
   <div class="category-layout">
     <div class="explore-row">
@@ -28,7 +30,8 @@
 
         <div class="option-group" style="align-items:center;">
           <label for="pin-length" class="option-label">Digits:</label>
-          <input type="number" id="pin-length" min="4" max="16" value="6" class="option-input" />
+          <input type="number" id="pin-length" min="4" max="128" value="6" class="option-input"
+            aria-describedby="pin-length-hint" />
         </div>
 
         <div class="option-group" aria-label="preset lengths">
@@ -39,8 +42,13 @@
           <button type="button" class="option-btn" data-length="16">16</button>
         </div>
 
-        <div class="note">Note: PIN length between 4 and 16 digits.</div>
+        <div class="bottom-tip" role="note" aria-live="polite">
+          <span class="tip-icon"><i class="fa-solid fa-circle-info"></i> Max PIN length is 128 characters.</span>
+        </div>
+
       </div>
+
+
 
       <div class="pw-right">
         <input type="hidden" id="pin-value" />
@@ -65,4 +73,5 @@
 
   <script src="../scripts/pin.js"></script>
 </body>
+
 </html>

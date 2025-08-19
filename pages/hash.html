@@ -1,37 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hash Generator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hash Generator — EssPouch</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/custom.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.js"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl">
-        <h1 class="text-2xl font-bold mb-6 text-center">Hash Generator</h1>
-        <form id="hash-form">
-            <div class="mb-4">
-                <label for="input-string" class="block text-gray-700 font-bold mb-2">Input String:</label>
-                <textarea id="input-string" name="input-string" rows="3" class="w-full p-2 border border-gray-300 rounded mt-1" placeholder="Enter string to hash" required oninput="toggleButtons()"></textarea>
-            </div>
-            <div class="mb-4 flex space-x-4">
-                <button type="button" id="md5-button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600" onclick="generateHash('MD5')" disabled>MD5</button>
-                <button type="button" id="sha1-button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600" onclick="generateHash('SHA1')" disabled>SHA-1</button>
-                <button type="button" id="sha256-button" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600" onclick="generateHash('SHA256')" disabled>SHA-256</button>
-            </div>
-            <div class="mt-8">
-                <label for="output-hash" class="block text-gray-700 font-bold mb-2">Hashed String:</label>
-                <div class="flex">
-                    <textarea id="output-hash" name="output-hash" rows="1" class="w-full p-2 border border-gray-300 rounded mt-1" readonly></textarea>
-                    <button type="button" class="w-1/5 ml-2 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 mt-1" onclick="copyHash()">Copy</button>
-                </div>
-            </div>
-        </form>
-        <div id="copy-notification" class="hidden fixed bottom-4 right-4 bg-gray-800 text-white py-2 px-4 rounded shadow-lg transition-opacity duration-300 opacity-0">
-            Hash copied to clipboard
-        </div>
+<body>
+  <div class="category-layout">
+    <div class="explore-row">
+      <div class="explore-head">
+        <h1 class="category-title">
+          Hash Generator
+          <br><span class="category-title-main">Compute MD5 / SHA‑1 / SHA‑256</span>
+        </h1>
+      </div>
+      <div class="decor-blob" aria-hidden="true"></div>
     </div>
-    <script src="../scripts/hash.js"></script>
+
+    <div class="card pw-flex-card hash-card">
+      <div class="pw-left">
+        <div class="option-group" style="align-items:center; gap:.9rem;">
+          <div class="mode-buttons" role="tablist" aria-label="Algorithm">
+            <button type="button" class="option-btn alg-btn selected" data-algo="MD5" aria-pressed="true">MD5</button>
+            <button type="button" class="option-btn alg-btn" data-algo="SHA1" aria-pressed="false">SHA-1</button>
+            <button type="button" class="option-btn alg-btn" data-algo="SHA256" aria-pressed="false">SHA-256</button>
+          </div>
+        </div>
+
+        <div class="option-group" style="flex-direction:column; gap:.75rem; margin-top:.6rem;">
+          <textarea id="hash-input" rows="4" maxlength="5000" placeholder="Enter string (max 5000 chars)" class="option-textarea" aria-label="Hash input"></textarea>
+
+          <div class="input-meta">
+            <div id="input-warning" class="input-warning" aria-live="assertive" role="status" hidden></div>
+          </div>
+
+          <div style="display:flex; gap:.6rem; justify-content:flex-end;">
+            <button id="send-btn" class="option-btn main"><i class="fa-solid fa-hashtag"></i> Generate</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pw-right">
+        <div class="chat-area" id="chat-area" aria-live="polite" aria-atomic="true">
+          <!-- single result shown here -->
+        </div>
+
+        <div class="action-row" style="margin-top:1rem; justify-content:flex-end;">
+          <button id="copy-result" class="copy-btn" title="Copy result">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="category-footer">
+    &copy; 2025 EssPouch. Made by Huy Nguyen.
+  </footer>
+
+  <script src="../scripts/hash.js"></script>
 </body>
 </html>
