@@ -1,66 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hash Generator — EssPouch</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hash Generator — EssPouch</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/custom.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.js"></script>
-</head>
-<body>
-  <div class="category-layout">
-    <div class="explore-row">
-      <div class="explore-head">
-        <h1 class="category-title">
-          Hash Generator
-          <br><span class="category-title-main">Compute MD5 / SHA‑1 / SHA‑256</span>
-        </h1>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/custom.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.js"></script>
+  </head>
+  <body>
+    <div class="floating-btns">
+      <a href="/index.html" class="home-btn" title="Back to Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+    <div class="category-layout">
+      <div class="explore-row">
+        <div class="explore-head">
+          <h1 class="category-title">
+            Hash Generator
+            <br /><span class="category-title-main"
+              >Compute MD5 / SHA‑1 / SHA‑256</span
+            >
+          </h1>
+        </div>
+        <div class="decor-blob" aria-hidden="true"></div>
       </div>
-      <div class="decor-blob" aria-hidden="true"></div>
+
+      <div class="card pw-flex-card hash-card">
+        <div class="pw-left">
+          <div class="option-group" style="align-items: center; gap: 0.9rem">
+            <div class="mode-buttons" role="tablist" aria-label="Algorithm">
+              <button
+                type="button"
+                class="option-btn alg-btn selected"
+                data-algo="MD5"
+                aria-pressed="true"
+              >
+                MD5
+              </button>
+              <button
+                type="button"
+                class="option-btn alg-btn"
+                data-algo="SHA1"
+                aria-pressed="false"
+              >
+                SHA-1
+              </button>
+              <button
+                type="button"
+                class="option-btn alg-btn"
+                data-algo="SHA256"
+                aria-pressed="false"
+              >
+                SHA-256
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="option-group"
+            style="flex-direction: column; gap: 0.75rem; margin-top: 0.6rem"
+          >
+            <textarea
+              id="hash-input"
+              rows="4"
+              maxlength="5000"
+              placeholder="Enter string (max 5000 chars)"
+              class="option-textarea"
+              aria-label="Hash input"
+            ></textarea>
+
+            <div class="input-meta">
+              <div
+                id="input-warning"
+                class="input-warning"
+                aria-live="assertive"
+                role="status"
+                hidden
+              ></div>
+            </div>
+
+            <div style="display: flex; gap: 0.6rem; justify-content: flex-end">
+              <button id="send-btn" class="option-btn main">
+                <i class="fa-solid fa-hashtag"></i> Generate
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pw-right">
+          <div
+            class="chat-area"
+            id="chat-area"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <!-- single result shown here -->
+          </div>
+
+          <div
+            class="action-row"
+            style="margin-top: 1rem; justify-content: flex-end"
+          >
+            <button id="copy-result" class="copy-btn" title="Copy result">
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="card pw-flex-card hash-card">
-      <div class="pw-left">
-        <div class="option-group" style="align-items:center; gap:.9rem;">
-          <div class="mode-buttons" role="tablist" aria-label="Algorithm">
-            <button type="button" class="option-btn alg-btn selected" data-algo="MD5" aria-pressed="true">MD5</button>
-            <button type="button" class="option-btn alg-btn" data-algo="SHA1" aria-pressed="false">SHA-1</button>
-            <button type="button" class="option-btn alg-btn" data-algo="SHA256" aria-pressed="false">SHA-256</button>
-          </div>
-        </div>
+    <footer class="category-footer">
+      &copy; 2025 EssPouch. Made by Huy Nguyen.
+    </footer>
 
-        <div class="option-group" style="flex-direction:column; gap:.75rem; margin-top:.6rem;">
-          <textarea id="hash-input" rows="4" maxlength="5000" placeholder="Enter string (max 5000 chars)" class="option-textarea" aria-label="Hash input"></textarea>
-
-          <div class="input-meta">
-            <div id="input-warning" class="input-warning" aria-live="assertive" role="status" hidden></div>
-          </div>
-
-          <div style="display:flex; gap:.6rem; justify-content:flex-end;">
-            <button id="send-btn" class="option-btn main"><i class="fa-solid fa-hashtag"></i> Generate</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="pw-right">
-        <div class="chat-area" id="chat-area" aria-live="polite" aria-atomic="true">
-          <!-- single result shown here -->
-        </div>
-
-        <div class="action-row" style="margin-top:1rem; justify-content:flex-end;">
-          <button id="copy-result" class="copy-btn" title="Copy result">Copy</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer class="category-footer">
-    &copy; 2025 EssPouch. Made by Huy Nguyen.
-  </footer>
-
-  <script src="../scripts/hash.js"></script>
-</body>
+    <script src="../scripts/hash.js"></script>
+  </body>
 </html>

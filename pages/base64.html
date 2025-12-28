@@ -1,73 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Base64 — EssPouch</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Base64 — EssPouch</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/custom.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
-<body>
-  <div class="category-layout">
-    <div class="explore-row">
-      <div class="explore-head">
-        <h1 class="category-title">
-          Base64
-          <br><span class="category-title-main">Encode / decode Base64 strings</span>
-        </h1>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/custom.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="floating-btns">
+      <a href="/index.html" class="home-btn" title="Back to Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+    <div class="category-layout">
+      <div class="explore-row">
+        <div class="explore-head">
+          <h1 class="category-title">
+            Base64
+            <br /><span class="category-title-main"
+              >Encode / decode Base64 strings</span
+            >
+          </h1>
+        </div>
+        <div class="decor-blob" aria-hidden="true"></div>
       </div>
-      <div class="decor-blob" aria-hidden="true"></div>
+
+      <div class="card pw-flex-card base64-card">
+        <div class="pw-left">
+          <div class="option-group" style="align-items: center; gap: 0.9rem">
+            <div class="mode-buttons" role="tablist" aria-label="Mode">
+              <button
+                id="mode-encode"
+                class="option-btn mode-btn mode-encode selected"
+                data-mode="encode"
+                aria-pressed="true"
+              >
+                <i class="fa-solid fa-file-export"></i> Encode
+              </button>
+              <button
+                id="mode-decode"
+                class="option-btn mode-btn mode-decode"
+                data-mode="decode"
+                aria-pressed="false"
+              >
+                <i class="fa-solid fa-file-import"></i> Decode
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="option-group"
+            style="flex-direction: column; gap: 0.75rem; margin-top: 0.6rem"
+          >
+            <!-- hard limit 5000 chars -->
+            <textarea
+              id="base-input"
+              rows="3"
+              maxlength="5000"
+              placeholder="Enter text or Base64 (max 5000 chars)"
+              class="option-textarea"
+              aria-label="Base64 input"
+            ></textarea>
+
+            <div class="input-meta">
+              <!-- only warning (no char count) -->
+              <div
+                id="input-warning"
+                class="input-warning"
+                aria-live="assertive"
+                role="status"
+                hidden
+              ></div>
+            </div>
+
+            <div style="display: flex; gap: 0.6rem; justify-content: flex-end">
+              <button id="send-btn" class="option-btn main">
+                <i class="fa-solid fa-paper-plane"></i> Send
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pw-right">
+          <input type="hidden" id="base-output" />
+
+          <!-- chat area: keep single reply only -->
+          <div
+            class="chat-area"
+            id="chat-area"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <!-- only single reply shown -->
+          </div>
+
+          <div
+            class="action-row"
+            style="margin-top: 1rem; justify-content: flex-end"
+          >
+            <button id="copy-result" class="copy-btn" title="Copy result">
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="card pw-flex-card base64-card">
-      <div class="pw-left">
-        <div class="option-group" style="align-items:center; gap:.9rem;">
-          <div class="mode-buttons" role="tablist" aria-label="Mode">
-            <button id="mode-encode" class="option-btn mode-btn mode-encode selected" data-mode="encode" aria-pressed="true">
-              <i class="fa-solid fa-file-export"></i> Encode
-            </button>
-            <button id="mode-decode" class="option-btn mode-btn mode-decode" data-mode="decode" aria-pressed="false">
-              <i class="fa-solid fa-file-import"></i> Decode
-            </button>
-          </div>
-        </div>
+    <footer class="category-footer">
+      &copy; 2025 EssPouch. Made by Huy Nguyen.
+    </footer>
 
-        <div class="option-group" style="flex-direction:column; gap:.75rem; margin-top:.6rem;">
-          <!-- hard limit 5000 chars -->
-          <textarea id="base-input" rows="3" maxlength="5000" placeholder="Enter text or Base64 (max 5000 chars)" class="option-textarea" aria-label="Base64 input"></textarea>
-
-          <div class="input-meta">
-            <!-- only warning (no char count) -->
-            <div id="input-warning" class="input-warning" aria-live="assertive" role="status" hidden></div>
-          </div>
-
-          <div style="display:flex; gap:.6rem; justify-content:flex-end;">
-            <button id="send-btn" class="option-btn main"><i class="fa-solid fa-paper-plane"></i> Send</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="pw-right">
-        <input type="hidden" id="base-output" />
-
-        <!-- chat area: keep single reply only -->
-        <div class="chat-area" id="chat-area" aria-live="polite" aria-atomic="true">
-          <!-- only single reply shown -->
-        </div>
-
-        <div class="action-row" style="margin-top:1rem; justify-content:flex-end;">
-          <button id="copy-result" class="copy-btn" title="Copy result">Copy</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer class="category-footer">
-    &copy; 2025 EssPouch. Made by Huy Nguyen.
-  </footer>
-
-  <script src="../scripts/base64.js"></script>
-</body>
+    <script src="../scripts/base64.js"></script>
+  </body>
 </html>
